@@ -21,12 +21,7 @@ app.engine('handlebars', exphb.engine({defaultLayout:'main'}));
 app.set('views', './views');
 
 // Set static content location in express
-// app.use('./static', express.static(path.join(__dirname, './public')))
-app.use(express.static(__dirname + '/public'));
-
-// console.log((path.join(__dirname, 'public/js')))
-
-
+app.use("/public", express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     res.render('home');
