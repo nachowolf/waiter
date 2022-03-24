@@ -12,5 +12,5 @@
 //     $(".dropdown-trigger").dropdown();
 //   });
         
-// M.AutoInit();
-console.log("Loaded file")
+M.AutoInit();
+// console.log("Loaded file")
