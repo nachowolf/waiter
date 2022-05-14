@@ -1,43 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/public/css/index.css">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/public/css/index.css">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Document</title>
 </head>
 
 <body>
-    <!-- Dropdown Structure -->
-<ul id="dropdown1" class="dropdown-content">
-  <li><a href="#!">one</a></li>
-  <li><a href="#!">two</a></li>
-  <li class="divider"></li>
-  <li><a href="#!">three</a></li>
-</ul>
-<nav>
-  <div class="nav-wrapper brown">
-    <a href="#!" class="brand-logo"><i class="large material-icons left">coffee</i></a>
-    <ul class="right hide-on-med-and-down">
-      <li><a href="/auth/login">Login</a></li>
-      <!-- Dropdown Trigger -->
-      <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="large material-icons left">account_circle</i></a></li>
-    </ul>
-  </div>
-</nav>
-    
-    {{{body}}}
+  <!-- Dropdown Structure -->
 
-    
-    <!-- Compiled and minified JavaScript -->
+  <ul id="dropdown1" class="dropdown-content lighter-brown">
+    <li ><a href="#!" class="white-text">Account</a></li>
+    <li><a href="#!" class="white-text">two</a></li>
+    <li class="divider"></li>
+    <li><a href="#!" class="white-text">Logout</a></li>
+  </ul>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="/public/js/main.js"></script>
-    
-    
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="/auth/login">Login</a></li>
+  </ul>
+
+  <nav>
+    <div class="nav-wrapper brown">
+      <a href="#!" class="brand-logo"><i class="large material-icons left">coffee</i></a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/auth/login">Login</a></li>
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i
+              class="large material-icons left">account_circle</i></a></li>
+
+      </ul>
+    </div>
+  </nav>
+
+
+
+  {{!-- <nav>
+    <div class="nav-wrapper brown">
+      <a href="#!" class="brand-logo"><i class="large material-icons left">coffee</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/auth/login">Login</a></li>
+        <!-- Dropdown Trigger -->
+        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i
+              class="large material-icons left">account_circle</i></a></li>
+      </ul>
+    </div>
+  </nav> --}}
+
+
+  {{{body}}}
+
+
+  <!-- Compiled and minified JavaScript -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/public/js/main.js"></script>
+
+
 </body>
+
 </html>

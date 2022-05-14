@@ -6,13 +6,32 @@ import cookieParser from 'cookie-parser';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import pg from 'pg';
+
+
 
 // Routes
+import waiterRoute from './src/api/components/waiter/waiterRoutes.js';
+import manageWaiterRoute from './src/api/components/manager/managerApi.js'
 import authRoute from './routes/authRoute.js';
 
 // Initialize express
 const app = express();
 dotenv.config();
+
+
+// Import environment variables from .env file
+const env = process.env;
+
+//DataBase
+const Pool = pg.Pool
+const pool = new Pool({
+    user: env.username,
+    host: env.host,
+    database: env.database,
+    password: env.password,
+    port: env.db_port,
+})
 
 // Set __directory
 const __filename = fileURLToPath(import.meta.url)
@@ -26,10 +45,14 @@ app.set('view engine', 'handlebars');
 app.engine('handlebars', exphb.engine({defaultLayout:'main'}));
 app.set('views', './views');
 
+
 // Set static content location in express
 app.use("/public", express.static(__dirname + '/public'));
 
+// initialize(pool)
 app.use("/auth", authRoute);
+app.use('/api/waiter', waiterRoute)
+app.use('/api/manager/waiters', manageWaiterRoute)
 
 app.get('/', (req, res) => {
     res.render('home');
@@ -40,7 +63,7 @@ app.get('/', (req, res) => {
 // })
 
 // Import port from .env file
-const port = process.env.PORT;
+const port = env.PORT;
 
 // Set port to lisetn on
 app.listen(port, () =>{

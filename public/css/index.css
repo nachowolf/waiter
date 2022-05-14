@@ -2,6 +2,10 @@ body{
     background-color:#D2B48C ;
 }
 
+.lighter-brown{
+    background-color:#D2B48C !important ;
+}
+
 /* #image-logo{
     
     width: 50% ;
