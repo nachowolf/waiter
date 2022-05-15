@@ -1,17 +1,25 @@
 import express from "express"
-import WaiterService from "./ManagerDatabaseService.js"
+import ManagerController from "./ManagerController.js";
 
-
-
-const waiterService = WaiterService();
+const controller = ManagerController();
 
 const router = express.Router()
 
-router.get('/add', async (req, res) => {
-    let waiter = { firstname: "nathri", lastname: "jacobs", email: "nathrjacobs@email.com", password: "1234" }
-    await waiterService.addWaiter(waiter)
-    await waiterService.getWaiters()
-    return res.json({ "hello": "world" })
+router.post('/add', async (req, res) => {
+    console.log(req.body)
+    let waiter = req.body
+    let waiterCreate = await controller.addWaiter(waiter)
+    // await controller.getWaiters()
+    return res.json(waiterCreate)
+})
+
+router.get('/shifts', async (req, res) => {
+    res.json(await controller.getAllShifts())
+})
+
+router.get('/shifts/:year/:month/:day', async (req, res) => {
+    let date = new Date(`${req.params.year}-${req.params.month}-${req.params.day}`)
+    res.json(await controller.getAllShiftsByDate(date))
 })
 
 

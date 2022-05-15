@@ -27,20 +27,21 @@ model Shift {
   id         Int    @id @default(autoincrement())
   waiter     Waiter @relation(fields: [waiter_id], references: [id])
   waiter_id  Int
-  workday Workday @relation(fields: [workday_id], references: [id])
+  workday Workday @relation(fields: [workday_id], references: [id]) 
   workday_id Int
 }
 
 model Workday {
   id   Int      @id @default(autoincrement())
   date DateTime
-  day  Day
+  day  WeekDay
+  month Month
   week String   @db.VarChar(2)
   year String   @db.VarChar(4)
-  shift Shift?
+  shift Shift[]
 }
 
-enum Day {
+enum WeekDay {
   sunday
   monday
   tuesday
@@ -48,5 +49,19 @@ enum Day {
   thursday
   friday
   saturday
+}
 
+enum Month {
+  january
+  february
+  march
+  april
+  may
+  june
+  july
+  august
+  september
+  october
+  november
+  december
 }

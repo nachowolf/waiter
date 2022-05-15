@@ -11,7 +11,19 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/shifts/add', async (req, res) => {
-    console.log(req.body.shifts)
+    // let waiter = { firstname: "nathri", lastname: "jacobs", email: "nathrjacobs@email.com", password: "1234" }
+    let waiter = { firstname: "nath", lastname: "jaco", email: "nathjaco@email.com", password: "1234" }
+    let dates = await req.body.shifts.map((date) => {return new Date(date)});
+    await controller.addShifts(waiter, dates)
+    res.send(true)
+})
+
+router.post('/shifts/delete', async (req, res) => {
+    // let waiter = { firstname: "nathri", lastname: "jacobs", email: "nathrjacobs@email.com", password: "1234" }
+    let waiter = { firstname: "nath", lastname: "jaco", email: "nathjaco@email.com", password: "1234" }
+    let dates = await req.body.shifts.map((date) => {return new Date(date)});
+    await controller.deleteShifts(waiter, dates)
+    res.send(true)
 })
 
 router.get('/shifts/:year', async (req, res) => {

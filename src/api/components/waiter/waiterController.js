@@ -14,20 +14,46 @@ export default function WaiterController() {
         return JSON.parse(result);
     }
 
-    async function addShift(){
-        let shift = new Date()
-        console.log(shift)
+    async function addShifts(waiter, shifts){
+        let waiter_res = await waiterService.getWaiter(waiter);
+
+        for(let shift of shifts){
+            let workday = await waiterService.getWorkday(shift);
+            if( workday === null || workday === undefined){
+                workday = await waiterService.addWorkday(shift)
+            }
+            let bookedShift = await waiterService.getShift(waiter_res, workday)
+            if(bookedShift === null ||  bookedShift === undefined){
+                bookedShift = await waiterService.addShift(waiter_res, workday)
+            } 
+        }    
     }
+    
 
     async function getWaiterShiftsByYear(waiter, year){
         let waiter_result = await waiterService.getWaiter(waiter);
-        let shifts = await waiterService.getWaiterShifts(waiter, year)
+        let shifts = await waiterService.getWaiterShifts(waiter_result, year)
 
         return shifts
     }
 
+    async function deleteShifts(waiter, shifts){
+        let waiter_res = await waiterService.getWaiter(waiter);
+
+        for(let shift of shifts){
+            let workday = await waiterService.getWorkday(shift);
+            let shiftToDelete = await waiterService.getShift(waiter_res, workday)
+            let deletedShift = await waiterService.deleteShift(shiftToDelete)
+
+        } 
+        
+    }
+
     return {
         getWaiter,
-        getWaiterShiftsByYear
+        getWaiterShiftsByYear,
+        addShifts,
+        deleteShifts
     }
 }
+
